@@ -52,7 +52,9 @@ for (let item of tableCells) {
     if (cells[1].split(" ").length > 1) {
       cells[1] = cells[1].replaceAll(" ", "-");
     }
-    codePointToName.push(`    "${cells[1]}": "${cells[3]}",`);
+    codePointToName.push(
+      `    "${cells[1].replaceAll("U+", "")}": "${cells[3]}",`,
+    );
     nameToBase64.push(`    "${cells[3]}": "${imageSource}",`);
   }
 }
@@ -69,4 +71,3 @@ result += `{\n  "codePointToName": {\n${codePointToName.join("\n")}\n  },\n`;
 result += `  "nameToBase64": {\n${nameToBase64.join("\n")}\n  }\n}`;
 
 console.log(result);
-
